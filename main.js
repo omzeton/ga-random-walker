@@ -4,15 +4,14 @@ import "./style.css";
 
 const getRandomEl = arr => arr[Math.floor(Math.random() * arr.length)];
 
-const paletteIndex = 66;
-const palette = colors[paletteIndex];
+const palette = colors[Math.floor(Math.random() * colors.length)];
 const firstColor = palette[0];
 const otherColors = palette.slice(0);
 
 const p5 = new p5Class(() => {});
 
-const width = 2560;
-const height = 1440;
+const width = window.innerWidth;
+const height = window.innerHeight;
 
 const circleRadius = 550;
 
@@ -61,8 +60,8 @@ function moveTopLeft(x, y) {
 }
 function getRandomPosition(x, y) {
   // return getRandomEl([moveTopRight, moveTopLeft, moveBottomRight, moveBottomLeft])(x, y);
-  return getRandomEl([moveTop, moveRight, moveBottom, moveLeft])(x, y);
-  // return getRandomEl([moveTop, moveTopRight, moveRight, moveBottomRight, moveBottom, moveBottomLeft, moveLeft, moveTopLeft])(x, y);
+  // return getRandomEl([moveTop, moveRight, moveBottom, moveLeft])(x, y);
+  return getRandomEl([moveTop, moveTopRight, moveRight, moveBottomRight, moveBottom, moveBottomLeft, moveLeft, moveTopLeft])(x, y);
 }
 
 function euclideanDistance(vec1, vec2) {
@@ -122,7 +121,7 @@ p5.setup = () => {
 };
 
 p5.draw = () => {
-  // lineLength = p5.random(1, 5);
+  // lineLength = p5.random(1, 10);
   lineLength = 3;
   for (const walker of walkerArr) {
     walker.draw();
